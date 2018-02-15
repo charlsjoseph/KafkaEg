@@ -22,7 +22,7 @@ public class SensorConsumer{
 
             consumer = new KafkaConsumer<>(props);
             
-            System.out.print("coimg here");
+            System.out.print("coimg here");   
             
             consumer.subscribe(Arrays.asList(topicName));
             try{
