@@ -1,0 +1,10 @@
+{"type": "record",
+ "name": "AvroOrder",
+ "fields": [
+     {"name": "orderId", "type": "int"},
+     {"name": "customerId",  "type": ["int", "null"]},
+     {"name": "customerEmailId", "type": ["string", "null"]},
+     {"name": "itemDesc", "type": ["string", "null"]},
+     {"name": "price", "type": ["int", "null"]}
+ ]
+}

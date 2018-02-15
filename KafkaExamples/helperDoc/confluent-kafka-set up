@@ -1,0 +1,81 @@
+Refer for confluent quick install: 
+
+================================================
+command to start all 2 services( kafka, zookeeper and schema registry)
+
+confluent start schema-registry
+
+e.g 
+
+charls@charls-VirtualBox:~$ confluent start schema-registry 
+Starting zookeeper
+zookeeper is [UP]
+Starting kafka
+kafka is [UP]
+Starting schema-registry
+schema-registry is [UP]
+charls@charls-VirtualBox:~$ 
+charls@charls-VirtualBox:~$ 
+charls@charls-VirtualBox:~$ jps
+17555 org.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar
+18822 SchemaRegistryMain
+16854 org.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar
+18583 QuorumPeerMain
+18665 SupportedKafka
+18957 Jps
+
+=====
+
+
+confluent stop schema-registry 
+
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+
+
+
+sudo kafka-avro-console-producer \
+         --broker-list localhost:9092 --topic test \
+         --property value.schema='{"type":"record","name":"myrecord","fields":[{"name":"f1","type":"string"}]}'
+
+sudo kafka-avro-console-producer \
+         --broker-list localhost:9092 --topic test \
+         --property value.schema='{"type":"record","name":"myrecord","fields":[{"name":"f2","type":"string"}]}'
+
+
+{"f1": "value1"}
+{"f1": "value2"}
+{"f1": "value3"}
+
+
+
+sudo kafka-avro-console-consumer --topic test \
+         --zookeeper localhost:2181 \
+         --from-beginning
+
+
+SimpleProducerTopic
+
+
+sudo kafka-avro-console-consumer --topic SimpleProducerTopic \
+         --zookeeper localhost:2181 \
+         --from-beginning
+
+sudo kafka-console-consumer --bootstrap-server localhost:9092 --topic SimpleProducerTopic --from-beginning
+
+to list topics
+
+kafka-topics --list --zookeeper localhost:2181
+
+to list the consumer group 
+kafka-consumer-groups --zookeeper localhost:2181 --describe --group RG
+
+
+to create a topic
+
+kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 10 --topic SensorData
+
+
+
+
+
+
